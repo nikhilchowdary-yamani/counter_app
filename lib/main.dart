@@ -67,6 +67,15 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+  void _resetAll() {
+    setState(() {
+      _counter = 0;
+      _isImage1 = true;
+      _animationController.reset();
+      _animationController.forward();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,13 +100,22 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _incrementCounter,
-              child: const Text('Increment'),
-            ),
-            ElevatedButton(
-              onPressed: _toggleImage,
-              child: const Text('Toggle Image'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: _incrementCounter,
+                  child: const Text('Increment'),
+                ),
+                ElevatedButton(
+                  onPressed: _toggleImage,
+                  child: const Text('Toggle Image'),
+                ),
+                ElevatedButton(
+                  onPressed: _resetAll,
+                  child: const Text('Reset'),
+                ),
+              ],
             ),
           ],
         ),
