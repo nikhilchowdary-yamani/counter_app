@@ -68,12 +68,35 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _resetAll() {
-    setState(() {
-      _counter = 0;
-      _isImage1 = true;
-      _animationController.reset();
-      _animationController.forward();
-    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Confirm Reset"),
+          content: const Text("Are you sure you want to reset?"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text("Reset"),
+              onPressed: () {
+                setState(() {
+                  _counter = 0;
+                  _isImage1 = true;
+                  _animationController.reset();
+                  _animationController.forward();
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -113,7 +136,10 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
                 ElevatedButton(
                   onPressed: _resetAll,
-                  child: const Text('Reset'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  child: const Text('Reset', style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),
