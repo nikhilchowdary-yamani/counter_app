@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Counter and Image Toggle',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage>
             FadeTransition(
               opacity: _curvedAnimation,
               child: Image.asset(
-                _isImage1 ? 'assets/image1.png' : 'assets/image2.png',
+                _isImage1 ? 'assets/landscape.png' : 'assets/portrait.png', // Image toggle
                 height: 200,
                 width: 200,
               ),
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage>
               children: [
                 ElevatedButton(
                   onPressed: _incrementCounter,
-                  child: const Text('Increment'),
+                  child: const Icon(Icons.add), // Increment icon
                 ),
                 ElevatedButton(
                   onPressed: _toggleImage,
@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage>
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                   ),
-                  child: const Text('Reset', style: TextStyle(color: Colors.white)),
+                  child: Image.asset('assets/reset.png', height: 24), // Reset Icon
                 ),
               ],
             ),
