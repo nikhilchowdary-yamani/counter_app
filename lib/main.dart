@@ -31,10 +31,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool _isImage1 = true;
+
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void _toggleImage() {
+    setState(() {
+      _isImage1 = !_isImage1;
     });
   }
 
@@ -48,14 +56,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Counter: $_counter',
-              style: const TextStyle(fontSize: 24),
+            // ... (Counter display)
+            Image.asset(
+              _isImage1 ? 'assets/image1.png' : 'assets/image2.png',
+              height: 200,
+              width: 200,
             ),
             const SizedBox(height: 20),
+            // ... (Increment button)
             ElevatedButton(
-              onPressed: _incrementCounter,
-              child: const Text('Increment'),
+              onPressed: _toggleImage,
+              child: const Text('Toggle Image'),
             ),
           ],
         ),
